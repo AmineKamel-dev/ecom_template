@@ -23,7 +23,7 @@ A full-stack e-commerce application with:
 ---
 
 ## 📂 Project Structure
-
+```text
 ├─ docs/                    # Documentation
 ├─ Code                
     └─ frontend/             # React frontend
