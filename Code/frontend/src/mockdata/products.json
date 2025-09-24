@@ -1,0 +1,48 @@
+[
+    {
+      "id": 1,
+      "name": "Wireless Headphones",
+      "description": "Noise-cancelling over-ear headphones with 30 hours of battery life.",
+      "price": 149.99,
+      "stock": 34,
+      "category": "Electronics",
+      "image": "/assets/products/headphones.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Mechanical Keyboard",
+      "description": "RGB backlit mechanical keyboard with blue switches.",
+      "price": 89.99,
+      "stock": 12,
+      "category": "Computers",
+      "image": "/assets/products/keyboard.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Smartphone Stand",
+      "description": "Adjustable aluminum stand for smartphones and small tablets.",
+      "price": 19.99,
+      "stock": 75,
+      "category": "Accessories",
+      "image": "/assets/products/stand.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Running Shoes",
+      "description": "Lightweight and breathable running shoes for daily training.",
+      "price": 59.99,
+      "stock": 40,
+      "category": "Fashion",
+      "image": "/assets/products/shoes.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Coffee Maker",
+      "description": "Automatic drip coffee maker with programmable timer.",
+      "price": 39.99,
+      "stock": 20,
+      "category": "Home Appliances",
+      "image": "/assets/products/coffee-maker.jpg"
+    }
+  ]
+  
