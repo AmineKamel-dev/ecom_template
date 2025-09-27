@@ -10,6 +10,6 @@ router.get('/:id',cartController.getCart);
 //delete cart
 router.delete('/:id',cartController.deleteCart);
 //delete item from cart 
-router.delete('/:id/items/:id',cartController.deleteItem);
+router.delete('/:cartId/items/:itemId',cartController.deleteItem);
 //add item to cart
-router.patch('/:id/items/:id',cartController.addItem);
+router.patch('/:cartId/items/:itemId',cartController.addItem);
