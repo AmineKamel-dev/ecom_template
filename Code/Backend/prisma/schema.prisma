@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./database"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          String      @id @default(cuid())
+  name        String
+  price       Float
+  stock       Int         @default(0)
+  description Json?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
+}
+
+model User {
+  id       String  @id @default(cuid())
+  username String
+  email    String  @unique
+  password String
+  role     Role    @default(USER)
+  cart     Cart?
+  orders   Order[]
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  userID    String?    @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  items     CartItem[]
+  User      User?      @relation(fields: [userID], references: [id])
+}
+
+model CartItem {
+  index     Int     @id @default(autoincrement())
+  CartID    String //foreign key
+  productID String //foreign key
+  quantity  Int     @default(1)
+  cart      Cart    @relation(fields: [CartID], references: [id])
+  product   Product @relation(fields: [productID], references: [id])
+
+  @@unique([CartID, productID]) //ensures only one instance of Product in Cart (with varying quantity)
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  userID    String //foreign key
+  status    Status   @default(PENDING)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  User  User        @relation(fields: [userID], references: [id])
+  Items OrderItem[]
+}
+
+model OrderItem {
+  index     Int    @id @default(autoincrement())
+  orderID   String
+  productID String //foreign key
+  quantity  Int    @default(1)
+  PricedAt  Float //price at purchase
+
+  order   Order   @relation(fields: [orderID], references: [id])
+  product Product @relation(fields: [productID], references: [id])
+
+  @@unique([orderID, productID])
+}
+
+enum Role {
+  USER
+  OWNER
+}
+
+enum Status {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELED
+  REFUNDED
+}
