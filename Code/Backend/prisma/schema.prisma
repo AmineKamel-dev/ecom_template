@@ -36,18 +36,18 @@ model Cart {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   items     CartItem[]
-  User      User?      @relation(fields: [userID], references: [id])
+  user      User?      @relation(fields: [userID], references: [id])
 }
 
 model CartItem {
   index     Int     @id @default(autoincrement())
-  CartID    String //foreign key
+  cartID    String //foreign key
   productID String //foreign key
   quantity  Int     @default(1)
-  cart      Cart    @relation(fields: [CartID], references: [id])
+  cart      Cart    @relation(fields: [cartID], references: [id], onDelete: Cascade)
   product   Product @relation(fields: [productID], references: [id])
 
-  @@unique([CartID, productID]) //ensures only one instance of Product in Cart (with varying quantity)
+  @@unique([cartID, productID]) //ensures only one instance of Product in Cart (with varying quantity)
 }
 
 model Order {
@@ -57,8 +57,8 @@ model Order {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  User  User        @relation(fields: [userID], references: [id])
-  Items OrderItem[]
+  user  User        @relation(fields: [userID], references: [id])
+  items OrderItem[]
 }
 
 model OrderItem {
