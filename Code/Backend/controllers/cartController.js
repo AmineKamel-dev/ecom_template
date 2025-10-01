@@ -6,25 +6,25 @@ exports.createCart= (req,res)=>{
 }
 
 exports.getCart=(req,res)=>{
-    let param = req.param;
-    console.json({message:`getcart  of id:  ${param} `});
+    const id= req.params;
+    console.json({message:`getcart  of id:  ${id} `});
 
 }
 
 exports.deleteCart=(req,res)=>{
-    let param = req.param;
-    console.json({message:`delete cart of id:  ${param} `});
+    const id = req.params;
+    console.json({message:`delete cart of id:  ${id} `});
 
 }
 
 exports.deleteItem=(req,res)=>{
-    let param = req.param;
+    let param = req.params;
     console.json({message:`delete item ${param.itemID} of cart ${param.cartID} request logged`});
 
 }
 
 exports.addItem=(req,res)=>{
-    let param = req.param;
+    let param = req.params;
     console.json({message:`add item ${param.itemID} to cart ${param.cartID} request logged`});
 
 }
