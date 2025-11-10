@@ -5,13 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NonNull;
 
-//TODO extract extra attributes from request body
 @AllArgsConstructor
-public class transactionEmail extends basicEmail {
+public class TransactionEmail extends BasicEmail {
     @Getter
-    @NotBlank
+    @NotBlank(message = "OrderID should not be blank")
     @JsonProperty("orderID")
     private final String orderID;
 
@@ -19,11 +17,17 @@ public class transactionEmail extends basicEmail {
     @JsonProperty("userID")
     private final String userID;
 
-    public transactionEmail(String reciever, String order, String user) {
+    public TransactionEmail(String reciever, String order, String user) {
         super(reciever);
         this.orderID = order;
         this.userID = user;
     }
 
-    // TODO: add mail templates using thymeleaf
+    // TODO: implement thymleaf engine for loading transaction template
+    @Override
+    public String getHTML() {
+        return "<html><body><h2>transaction Email  Placeholder</h2></body></html>\n";
+
+    }
+
 }
